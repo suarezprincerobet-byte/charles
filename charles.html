@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Minimalist Portfolio</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Helvetica Neue', Arial, sans-serif;
+ line-height: 1.6;
+ color: #2c3e50;
+ background: #f8f9fa;
+ }
+
+ header {
+ background: white;
+ box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ }
+
+ nav {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px 40px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+
+ .brand {
+ font-size: 24px;
+ font-weight: 600;
+ color: #3498db;
+ }
+
+ .nav-links {
+ display: flex;
+ gap: 35px;
+ list-style: none;
+ }
+
+ .nav-links a {
+ color: #2c3e50;
+ text-decoration: none;
+ font-weight: 500;
+ transition: color 0.3s;
+ }
+
+ .nav-links a:hover {
+ color: #3498db;
+ }
+
+ .hero {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 100px 40px;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 80px;
+ align-items: center;
+ }
+
+ .hero-content h1 {
+ font-size: 56px;
+ margin-bottom: 20px;
+ color: #2c3e50;
+ line-height: 1.2;
+ }
+
+ .hero-content .highlight {
+ color: #3498db;
+ }
+
+ .hero-content p {
+ font-size: 20px;
+ color: #7f8c8d;
+ margin-bottom: 30px;
+ line-height: 1.8;
+ }
+
+ .hero-buttons {
+ display: flex;
+ gap: 20px;
+ }
+
+ .btn {
+ padding: 14px 32px;
+ border-radius: 8px;
+ text-decoration: none;
+ font-weight: 600;
+ transition: all 0.3s;
+ display: inline-block;
+ }
+
+ .btn-primary {
+ background: #3498db;
+ color: white;
+ }
+
+ .btn-primary:hover {
+ background: #2980b9;
+ transform: translateY(-2px);
+ box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+ }
+
+ .btn-secondary {
+ background: transparent;
+ color: #3498db;
+ border: 2px solid #3498db;
+ }
+
+ .btn-secondary:hover {
+ background: #3498db;
+ color: white;
+ }
+
+ /* ------------------------------
+ UPDATED IMAGE SIZE + FLOATING
+ --------------------------------*/
+ .profile-wrapper {
+ position: relative;
+ width: 350px;
+ height: 350px;
+ margin: auto;
+ border-radius: 20px;
+ overflow: hidden;
+ box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+ animation: float 4s ease-in-out infinite;
+ }
+
+ .profile-img img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ }
+
+ @keyframes float {
+ 0% { transform: translateY(0); }
+ 50% { transform: translateY(-15px); }
+ 100% { transform: translateY(0); }
+ }
+ /* ------------------------------ */
+
+ section {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 80px 40px;
+ }
+
+ .section-title {
+ font-size: 42px;
+ margin-bottom: 20px;
+ color: #2c3e50;
+ text-align: center;
+ }
+
+ .section-subtitle {
+ text-align: center;
+ color: #7f8c8d;
+ font-size: 18px;
+ margin-bottom: 60px;
+ }
+
+ .about-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+ gap: 40px;
+ margin-top: 40px;
+ }
+
+ .about-card {
+ background: white;
+ padding: 40px;
+ border-radius: 15px;
+ box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+ transition: transform 0.3s;
+ }
+
+ .about-card:hover {
+ transform: translateY(-5px);
+ }
+
+ .about-card h3 {
+ font-size: 24px;
+ margin-bottom: 15px;
+ color: #3498db;
+ }
+
+ .about-card p {
+ color: #7f8c8d;
+ line-height: 1.8;
+ }
+
+ .skills-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 30px;
+ }
+
+ .skill-item {
+ background: white;
+ padding: 30px;
+ border-radius: 12px;
+ text-align: center;
+ box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+ transition: all 0.3s;
+ }
+
+ .skill-item:hover {
+ box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+ }
+
+ .skill-icon {
+ font-size: 48px;
+ margin-bottom: 15px;
+ }
+
+ .skill-item h4 {
+ font-size: 18px;
+ color: #2c3e50;
+ margin-bottom: 10px;
+ }
+
+ .skill-item p {
+ color: #7f8c8d;
+ font-size: 14px;
+ }
+
+ .projects-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ gap: 35px;
+ }
+
+ .project-card {
+ background: white;
+ border-radius: 15px;
+ overflow: hidden;
+ box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+ transition: transform 0.3s;
+ }
+
+ .project-card:hover {
+ transform: translateY(-8px);
+ }
+
+ .project-image {
+ width: 100%;
+ height: 220px;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ font-size: 48px;
+ }
+
+ .project-info {
+ padding: 25px;
+ }
+
+ .project-info h3 {
+ font-size: 22px;
+ margin-bottom: 12px;
+ color: #2c3e50;
+ }
+
+ .project-info p {
+ color: #7f8c8d;
+ margin-bottom: 20px;
+ line-height: 1.7;
+ }
+
+ .project-link {
+ color: #3498db;
+ text-decoration: none;
+ font-weight: 600;
+ transition: color 0.3s;
+ }
+
+ .project-link:hover {
+ color: #2980b9;
+ }
+
+ .contact-container {
+ background: white;
+ padding: 60px;
+ border-radius: 20px;
+ box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+ max-width: 700px;
+ margin: 0 auto;
+ }
+
+ .form-group {
+ margin-bottom: 25px;
+ }
+
+ .form-group label {
+ display: block;
+ margin-bottom: 8px;
+ color: #2c3e50;
+ font-weight: 600;
+ }
+
+ .form-group input,
+ .form-group textarea {
+ width: 100%;
+ padding: 14px;
+ border: 2px solid #e8e8e8;
+ border-radius: 8px;
+ font-size: 16px;
+ transition: border-color 0.3s;
+ }
+
+ .form-group input:focus,
+ .form-group textarea:focus {
+ outline: none;
+ border-color: #3498db;
+ }
+
+ .form-group textarea {
+ resize: vertical;
+ min-height: 140px;
+ }
+
+ .submit-btn {
+ width: 100%;
+ padding: 16px;
+ background: #3498db;
+ color: white;
+ border: none;
+ border-radius: 8px;
+ font-size: 18px;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.3s;
+ }
+
+ .submit-btn:hover {
+ background: #2980b9;
+ transform: translateY(-2px);
+ box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+ }
+
+ footer {
+ background: #2c3e50;
+ color: white;
+ text-align: center;
+ padding: 50px 40px;
+ }
+
+ .footer-content {
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+
+ .social-links {
+ display: flex;
+ justify-content: center;
+ gap: 25px;
+ margin-bottom: 25px;
+ }
+
+ .social-links a {
+ width: 45px;
+ height: 45px;
+ background: rgba(255,255,255,0.1);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ text-decoration: none;
+ transition: all 0.3s;
+ }
+
+ .social-links a:hover {
+ background: #3498db;
+ transform: translateY(-3px);
+ }
+
+ @media (max-width: 768px) {
+ .hero {
+ grid-template-columns: 1fr;
+ padding: 60px 20px;
+ gap: 50px;
+ }
+
+ .hero-content h1 {
+ font-size: 38px;
+ }
+
+ .hero-buttons {
+ flex-direction: column;
+ }
+
+ nav {
+ flex-direction: column;
+ gap: 20px;
+ padding: 20px;
+ }
+
+ .nav-links {
+ gap: 20px;
+ }
+
+ section {
+ padding: 60px 20px;
+ }
+
+ .contact-container {
+ padding: 40px 25px;
+ }
+
+ .section-title {
+ font-size: 32px;
+ }
+ }
+
+ input[type="file"] {
+ display: none;
+ }
+ </style>
+</head>
+<body>
+ <header>
+ <nav>
+ <div class="brand">Charles Juaquin</div>
+ <ul class="nav-links">
+ <li><a href="#home">Home</a></li>
+ <li><a href="#about">About</a></li>
+ <li><a href="#skills">Skills</a></li>
+ <li><a href="#projects">Projects</a></li>
+ <li><a href="#contact">Contact</a></li>
+ </ul>
+ </nav>
+ </header>
+
+ <section id="home" class="hero">
+ <div class="hero-content">
+ <h1>Hi, I'm <span class="highlight">Charles Juaquin Suarez</span></h1>
+ <p>A passionate web developer and designer creating beautiful digital experiences that make a difference.</p>
+ <div class="hero-buttons">
+ <a href="#contact" class="btn btn-primary">Hire Me</a>
+ <a href="#projects" class="btn btn-secondary">View Work</a>
+ </div>
+ </div>
+
+ <!-- UPDATED FLOATING FIXED-SIZE IMAGE -->
+ <div class="profile-wrapper">
+ <div class="profile-img">
+ <img src="charles.jfif">
+ </div>
+ </div>
+ </section>
+
+ <section id="about">
+ <h2 class="section-title">About Me</h2>
+ <p class="section-subtitle">Get to know more about my background and expertise</p>
+ <div class="about-grid">
+ <div class="about-card">
+ <h3>Who I Am</h3>
+ <p>I'm a creative professional with a passion for building stunning digital products. I combine technical skills with creative vision to deliver exceptional results and I am a dancer also.</p>
+ </div>
+ <div class="about-card">
+ <h3>What I Do</h3>
+ <p>I specialize in web development, UI/UX design, and creating seamless user experiences across all platforms and devices I am also doing a dance choreographer.</p>
+ </div>
+ <div class="about-card">
+ <h3>My Approach</h3>
+ <p>I believe in clean code, beautiful design, and user-centered development. Every project is an opportunity to create something remarkable.</p>
+ </div>
+ </div>
+ </section>
+
+ <section id="skills">
+ <h2 class="section-title">My Skills</h2>
+ <p class="section-subtitle">Technologies and tools I work with</p>
+ <div class="skills-container">
+ <div class="skill-item">
+ <div class="skill-icon">💻</div>
+ <h4>Frontend</h4>
+ <p>HTML, CSS, JavaScript, React</p>
+ </div>
+ <div class="skill-item">
+ <div class="skill-icon">⚙️</div>
+ <h4>Backend</h4>
+ <p>Node.js, Python, Databases</p>
+ </div>
+ <div class="skill-item">
+ <div class="skill-icon">🎨</div>
+ <h4>Design</h4>
+ <p>Figma, Adobe XD, UI/UX</p>
+ </div>
+ <div class="skill-item">
+ <div class="skill-icon">📱</div>
+ <h4>Mobile</h4>
+ <p>Responsive Design, PWA</p>
+ </div>
+ </div>
+ </section>
+
+ <section id="projects">
+ <h2 class="section-title">Featured Projects</h2>
+ <p class="section-subtitle">Some of my recent work</p>
+ <div class="projects-grid">
+ <div class="project-card">
+ <div class="project-image">🌐</div>
+ <div class="project-info">
+ <h3>E-Commerce Platform</h3>
+ <p>A modern online shopping experience with seamless checkout and inventory management.</p>
+ <a href="#" class="project-link">View Project →</a>
+ </div>
+ </div>
+ <div class="project-card">
+ <div class="project-image">📊</div>
+ <div class="project-info">
+ <h3>Analytics Dashboard</h3>
+ <p>Real-time data visualization platform for business insights and decision making.</p>
+ <a href="#" class="project-link">View Project →</a>
+ </div>
+ </div>
+ <div class="project-card">
+ <div class="project-image">🎯</div>
+ <div class="project-info">
+ <h3>Task Management App</h3>
+ <p>Collaborative productivity tool designed for teams to streamline their workflow.</p>
+ <a href="#" class="project-link">View Project →</a>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section id="contact">
+ <h2 class="section-title">Let's Work Together</h2>
+ <p class="section-subtitle">Have a project in mind? Let's discuss how I can help</p>
+ <div class="contact-container">
+ <form id="contactForm">
+ <div class="form-group">
+ <label for="name">Full Name</label>
+ <input type="text" id="name" required>
+ </div>
+ <div class="form-group">
+ <label for="email">Email Address</label>
+ <input type="email" id="email" required>
+ </div>
+ <div class="form-group">
+ <label for="subject">Subject</label>
+ <input type="text" id="subject" required>
+ </div>
+ <div class="form-group">
+ <label for="message">Message</label>
+ <textarea id="message" required></textarea>
+ </div>
+ <button type="submit" class="submit-btn">Send Message</button>
+ </form>
+ </div>
+ </section>
+
+ <footer>
+ <div class="footer-content">
+ <div class="social-links">
+ <a href="#" title="LinkedIn">in</a>
+ <a href="#" title="GitHub">GH</a>
+ <a href="#" title="Twitter">TW</a>
+ <a href="#" title="Email">@</a>
+ </div>
+ <p>&copy; 2024 Charles Juaquin Suarez. All rights reserved.</p>
+ </div>
+ </footer>
+
+ <script>
+ // Smooth scrolling
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+ anchor.addEventListener('click', function(e) {
+ e.preventDefault();
+ const target = document.querySelector(this.getAttribute('href'));
+ if (target) {
+ target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ });
+ });
+
+ // Contact form
+ document.getElementById('contactForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+ alert('Thank you for reaching out! I will get back to you soon.');
+ this.reset();
+ });
+ </script>
+</body>
+</html>
